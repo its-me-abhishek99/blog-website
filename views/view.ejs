@@ -1,0 +1,35 @@
+<%- include("partials/header.ejs")%>
+
+
+   <%if(locals.blogs&&blogs.length!=0){ %>
+    <% for(let i=0;i<blogs.length;i++){ %>
+     <!-- maybe use input type hidhden along the h3 and h3 and stuffs  -->
+      <form action="/update" method="POST">
+      <article class="blog-post container">
+        <h2 class="fs-1 link-body-emphasis mb-1 pb-1 ps-3" name="title"><strong> <%= blogs[i].title %></strong></h2>
+        <input type="hidden" name="title" value="<%= blogs[i].title%>">
+        <h3 class="blog-post-meta ps-3" name="author">By  <%= blogs[i].author %></h3>
+        <input type="hidden" name="author" value="<%= blogs[i].author %>">
+        <p class="ps-3 fs-5" name="content"><%= blogs[i].content %></p>
+        <input type="hidden" name="content" value="<%= blogs[i].content %>">
+        <input type="hidden" name="idx" value="<%=i%>">
+        <!-- below line for debug -->
+        <!-- <input type="number" value="<%=i%>">
+         -->
+        <button type="submit"  class="btn btn-outline-primary">Update</button>
+        
+      </article>
+      
+      
+    </form>
+  
+  
+  <br>
+  <hr>
+  <%}%>
+  
+    <%}else{%>
+    <h1 class="text-center">Oops! it's empty</h1>
+    <%}%>
+
+<%- include("partials/footer.ejs") %>
